@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Solution1 {
+public class Solution1_Approach1 {
     public int[][] plot;
 
     public int globalArea=0;
@@ -132,8 +132,8 @@ public class Solution1 {
 
     public static void main(String[] args) {
 
-        // create an object of class Solution1
-        Solution1 obj = new Solution1();
+        // create an object of class Solution1_Approach1
+        Solution1_Approach1 obj = new Solution1_Approach1();
 
         // assumption right now
         String line1 = "4 4 8";
