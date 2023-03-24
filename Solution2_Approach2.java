@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Solution2_Approach2 {
     public int[][] plot;
@@ -108,11 +109,16 @@ public class Solution2_Approach2 {
 
     public static void main(String[] args) {
 
+        // Input from user for line1
+        Scanner sc = new Scanner(System.in);
+
         // create an object of class Solution1_Approach1
         Solution2_Approach2 obj = new Solution2_Approach2();
 
         // assumption right now
-        String line1 = "6 6 10";
+        //String line1 = "6 6 10";
+        System.out.println("Enter m<space>n<space>h:");
+        String line1 = sc.nextLine();
 
         // preprocessing step
         String[] line1Split = line1.split("\\s+");
@@ -121,14 +127,22 @@ public class Solution2_Approach2 {
         int h = Integer.parseInt(line1Split[2]);
 
         // Input lineM
-        String[] lineM = new String[]{
-                "4 1 4 6 3 9",
-                "2 4 11 16 5 1",
-                "2 12 41 14 5 3",
-                "8 5 15 4 2 3",
-                "3 5 4 1 3 5",
-                "1 5 3 4 6 1"
-        };
+        System.out.println("Enter 'm' pair's i.e. (n1<space>n2<space>n3..n):");
+        String[] lineM = new String[m];
+        for(int i=0; i<m; i++){
+            lineM[i] = sc.nextLine();
+        }
+
+        // Input lineM
+//        String[] lineM = new String[]{
+//                "4 1 4 6 3 9",
+//                "2 4 11 16 5 1",
+//                "2 12 41 14 5 3",
+//                "8 5 15 4 2 3",
+//                "3 5 4 1 3 5",
+//                "1 5 3 4 6 1"
+//        };
+
         obj.plot = new int[m][n];
         for(int r=0; r<m; r++){
             String[] lineMSplit = lineM[r].split("\\s");
