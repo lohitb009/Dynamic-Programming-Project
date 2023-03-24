@@ -41,19 +41,18 @@ area and its corresponding upper and lower bounds if the local area is greater t
 Finally, the method returns a string representation of the global maximum area's upper and lower bounds. It also prints 
 the same information to the console.
 ```
-<i>Time Complexity:</i>
-```aidl
 
-```
+<u><i>Time Complexity:</i></u><br>
+The time complexity of algorithm is O(m<sup>3</sup> n<sup>3</sup>).<br>
+We are visiting every cell and at every cell we are checking the possibility of better square by going top and left <br>
+of the bottom corner respectively conditionally.
 
 #### <i>Algorithm 2:</i>
 ```aidl
 
 ```
-<i>Time Complexity:</i>
-```aidl
+<u><i>Time Complexity:</i></u>
 
-```
 
 #### <i>Algorithm 3:</i>
 ```aidl
@@ -91,9 +90,28 @@ adjacent position form a larger square by checking the values of the 'global_x_u
 Finally, return the string representation of the 'global_x_u', 'global_y_u', 'global_x_b', and 'global_y_b' variables 
 as the solution to the problem.
 ```
-<i>Time Complexity:</i>
-```aidl
 
+<u><i>Time Complexity:</i></u>
+
+The time complexity for this algorithm is O(mn).<br>
+Here we are performing bottom-up dynamic programming and using 2D memorization.
+
+<u><i> Analysis of Algorithm:</i></u><br>
+
+memorization2D(r,c) = bottom-right corner/coordinate value<br>
+goal = (global_x_u,global_y_u) and (global_x_b,global_y_b) <br>
+
+<i>Bellman-Equation:</i>
+```aidl
+memorization2D[r][c] will be 
+
+a. (r,c):
+        if (r = m-1 && 0<=c<n and plot[r][c]>= h) OR (c = n-1 && 0<=r<m and plot[r][c]< h)
+b. -1,-1:
+        if(r = m-1 && 0<=c<n and plot[r][c]< h) OR (c = n-1 && 0<=r<m and plot[r][c]< h) OR
+        (memorization2D[r+1][c] OR memorization2D[r+1][c+1] OR memorization2D[r][c+1] == -1,-1)
+c. memorization2D[r][c]:
+         (memorization2D[r+1][c] AND memorization2D[r+1][c+1] AND memorization2D[r][c+1] != -1,-1)
 ```
 
 
@@ -103,11 +121,12 @@ as the solution to the problem.
 ```aidl
 
 ```
-<i>Time Complexity:</i>
-```aidl
 
-```
-#### <i>Algorithm 5:</i>
+<u><i>Time Complexity:</i></u><br>
+
+
+
+#### <i>Algorithm 5:(A & B)</i>
 ```aidl
 Define a method named "getSolution" that takes in three integer parameters "m", "n" and "h" and returns a string.
 Create a boolean matrix named "boolMatrix" of size "m x n" and a string matrix named "memorization2D" of size "m x n".
@@ -141,10 +160,31 @@ string in the required format.
 
 Return the string.
 ```
-<i>Time Complexity:</i>
+
+<u><i>Time Complexity:</i></u>
+
+The time complexity for this algorithm is O(mn).<br>
+Here we are performing bottom-up dynamic programming and using 2D memorization.
+
+<u><i> Analysis of Algorithm:</i></u><br>
+
+memorization2D(r,c) = bottom-right corner/coordinate value<br>
+goal = (global_x_u,global_y_u) and (global_x_b,global_y_b) <br>
+
+<i>Bellman-Equation:</i>
 ```aidl
+memorization2D[r][c] will be 
+
+a. -1,-1:
+        if(r = m-1 && 0<=c<n) OR (c = n-1 && 0<=r<m)  OR
+        (boolean[r+1][c] OR boolean[r][c+1] == false)
+b. memorization2D[r][c]:
+         (boolean[r+1][c] AND boolean[r+1][c+1] AND boolean[r][c+1] == true)
+b. r+1,c+1:
+         (boolean[r+1][c] == true AND boolean[r+1][c+1]== false AND boolean[r][c+1] == true)
 
 ```
+
 ### Problem 3:
 ****
 #### <i>Algorithm 6:</i>
@@ -172,15 +212,23 @@ bounds, each separated by a space.
 
 Return the string representation of the StringBuilder object.
 ```
-<i>Time Complexity:</i>
-```aidl
+<u><i>Time Complexity:</i></u><br>
+The time complexity of algorithm is O(m<sup>3</sup> n<sup>3</sup>).<br>
+We are visiting every cell and at every cell we are checking the possibility of better square by going top and left <br>
+of the bottom corner respectively conditionally and taking care of allowed breeches (k).
 
-```
 #### <i>Algorithm 7:</i>
 ```aidl
 
 ```
-<i>Time Complexity:</i>
-```aidl
+<u><i>Time Complexity:</i></u>
 
+
+<u><i> Analysis of Algorithm:</i></u><br>
+
+memorization2D(r,c) = bottom-right corner/coordinate value<br>
+goal = (global_x_u,global_y_u) and (global_x_b,global_y_b) <br>
+
+<i>Bellman-Equation:</i>
+```aidl
 ```
