@@ -79,17 +79,17 @@ public class Solution2_Approach2 {
             }
         }
 
-        System.out.println("\nbooleanMatrix = ");
-        for(int r=0; r<m; r++){
-            System.out.println(Arrays.toString(boolMatrix[r]));
-        }
-        System.out.println("\nmemorization2D = ");
-        for(int r=0; r<m; r++){
-            System.out.println(Arrays.toString(memorization2D[r]));
-        }
-
-        System.out.println("\nupper bound (x_u,y_u) = "+"("+global_x_u+","+global_y_u+")");
-        System.out.println("lower bound (x_b,y_b) = "+"("+global_x_b+","+global_y_b+")");
+//        System.out.println("\nbooleanMatrix = ");
+//        for(int r=0; r<m; r++){
+//            System.out.println(Arrays.toString(boolMatrix[r]));
+//        }
+//        System.out.println("\nmemorization2D = ");
+//        for(int r=0; r<m; r++){
+//            System.out.println(Arrays.toString(memorization2D[r]));
+//        }
+//
+//        System.out.println("\nupper bound (x_u,y_u) = "+"("+global_x_u+","+global_y_u+")");
+//        System.out.println("lower bound (x_b,y_b) = "+"("+global_x_b+","+global_y_b+")");
 
         StringBuilder rtrString = new StringBuilder();
         rtrString.append(Integer.toString(this.global_x_u+1));
@@ -152,10 +152,10 @@ public class Solution2_Approach2 {
         }
 
         // check the values
-        System.out.println("m = " + m);
-        System.out.println("n = " + n);
-        System.out.println("h = " + h);
-        System.out.println("plot = " + Arrays.deepToString(obj.plot));
+//        System.out.println("m = " + m);
+//        System.out.println("n = " + n);
+//        System.out.println("h = " + h);
+//        System.out.println("plot = " + Arrays.deepToString(obj.plot));
 
         System.out.println("\nfinal-result = " + obj.getSolution(m,n,h));
     }
