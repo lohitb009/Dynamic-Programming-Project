@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Solution2_Approach1 {
+public class Algorithm4 {
     public static int[] largestSquareArea(int[][] p, int h) {
         int m = p.length;
         int n = p[0].length;

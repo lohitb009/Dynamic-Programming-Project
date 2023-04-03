@@ -1,7 +1,7 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Solution1_Approach1 {
+public class Algorithm6 {
+
     public int[][] plot;
 
     public int globalArea=0;
@@ -12,8 +12,9 @@ public class Solution1_Approach1 {
     public int global_x_b=0;
     public int global_y_b=0;
 
-    public int[] helper(int x_th, int y_th, int x_c, int y_c, int m, int n, int h){
+    public int[] helper(int x_th, int y_th, int x_c, int y_c, int m, int n, int h, int k){
         int [] result = new int[2];
+
         // base-case
         if(x_c == m || y_c == n){
             result[0] = -1;
@@ -30,7 +31,11 @@ public class Solution1_Approach1 {
             if(this.plot[x_temp][y_c] >= h){
                 x_temp -= 1;
                 continue;
-            }else {
+            } else if (this.plot[x_temp][y_c] < h && k>=0) {
+                x_temp -= 1;
+                k-=1;
+                continue;
+            } else {
                 top = false;
                 break;
             }
@@ -50,7 +55,11 @@ public class Solution1_Approach1 {
             if(this.plot[x_c][y_temp] >= h){
                 y_temp -= 1;
                 continue;
-            }else {
+            } else if (this.plot[x_c][y_temp] < h && k>=0) {
+                y_temp -= 1;
+                k-=1;
+                continue;
+            } else {
                 left = false;
                 break;
             }
@@ -64,7 +73,7 @@ public class Solution1_Approach1 {
         }
 
         // recursion
-        result = this.helper(x_th,y_th,x_c+1,y_c+1,m,n,h);
+        result = this.helper(x_th,y_th,x_c+1,y_c+1,m,n,h,k);
         if(result[0]>x_c && result[1]>y_c){
             return result;
         }else {
@@ -74,7 +83,7 @@ public class Solution1_Approach1 {
         }
     }
 
-    public String getSolution(int m, int n, int h){
+    public String getSolution(int m, int n, int h, int k){
 
         for(int r=0; r<m; r++){
             for(int c=0; c<n; c++){
@@ -89,7 +98,7 @@ public class Solution1_Approach1 {
                     int y_b = c;
 
                     // call the helper function
-                    int [] below = this.helper(r,c,r+1,c+1,m,n,h);
+                    int [] below = this.helper(r,c,r+1,c+1,m,n,h,k);
                     if(below[0]>r && below[1]>c){
                         x_b = below[0];
                         y_b = below[1];
@@ -136,11 +145,11 @@ public class Solution1_Approach1 {
         // Input from user for line1
         Scanner sc = new Scanner(System.in);
 
-        // create an object of class Solution1_Approach1
-        Solution1_Approach1 obj = new Solution1_Approach1();
+        // create an object of class Algorithm1
+        Algorithm6 obj = new Algorithm6();
 
         // assumption right now
-        //String line1 = "4 4 8";
+        //String line1 = "6 6 10 2";
         System.out.println("Enter m<space>n<space>h:");
         String line1 = sc.nextLine();
 
@@ -149,6 +158,7 @@ public class Solution1_Approach1 {
         int m = Integer.parseInt(line1Split[0]);
         int n = Integer.parseInt(line1Split[1]);
         int h = Integer.parseInt(line1Split[2]);
+        int k = Integer.parseInt(line1Split[3]);
 
         // Input lineM
         System.out.println("Enter 'm' pair's i.e. (n1<space>n2<space>n3..n):");
@@ -159,14 +169,15 @@ public class Solution1_Approach1 {
 
         // Input lineM
 //        String[] lineM = new String[]{
-//                "6 10 9 12",
-//                "8 8 8 12",
-//                "1 10 10 10",
-//                "9 10 9 9"
+//                "13 14 13 6 4 1",
+//                "14 6 14 1 4 7",
+//                "11 1 12 5 7 2",
+//                "4 1 6 7 3 1",
+//                "4 3 6 4 2 1",
+//                "1 2 3 4 5 6"
 //        };
 
         obj.plot = new int[m][n];
-
         for(int r=0; r<m; r++){
             String[] lineMSplit = lineM[r].split("\\s");
             for(int c=0; c<n; c++){
@@ -180,6 +191,6 @@ public class Solution1_Approach1 {
 //        System.out.println("h = " + h);
 //        System.out.println("plot = " + Arrays.deepToString(obj.plot));
 
-        System.out.println("final-result = " + obj.getSolution(m,n,h));
+        System.out.println("final-result = " + obj.getSolution(m,n,h,k));
     }
 }

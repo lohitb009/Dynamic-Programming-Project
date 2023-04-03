@@ -10,26 +10,26 @@ all: $(classes)
 $(classes): %.class: %.java
 	$(JC) $<
 
-algo1: Solution1_Approach1.class
-	$(JR) Solution1_Approach1
+algo1: Algorithm1.class
+	$(JR) Algorithm1
 
-algo2: Solution1_Approach2.class
-	$(JR) Solution1_Approach2
+algo2: Algorithm2.class
+	$(JR) Algorithm2
 
-algo3: Solution1_Approach3.class
-	$(JR) Solution1_Approach3
+algo3: Algorithm3.class
+	$(JR) Algorithm3
 
-algo4: Solution2_Approach1.class
-	$(JR) Solution2_Approach1
+algo4: Algorithm4.class
+	$(JR) Algorithm4
 
-algo5: Solution2_Approach2.class
-	$(JR) Solution2_Approach2
+algo5: Algorithm5.class
+	$(JR) Algorithm5
 
-algo6: Solution3_Approach1.class
-	$(JR) Solution3_Approach1
+algo6: Algorithm6.class
+	$(JR) Algorithm1
 
-#algo7: Solution3_Approach2.class
-#	$(JR) Solution3_Approach2
+#algo7: Algorithm7.class
+#	$(JR) Algorithm7
 
 clean:
 	rm -f *.class
