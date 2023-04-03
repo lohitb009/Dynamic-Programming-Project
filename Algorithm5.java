@@ -4,28 +4,6 @@ import java.util.Scanner;
 public class Algorithm5 {
     public int[][] plot;
 
-//    public int globalArea=-1;
-//
-//    public int global_x_u=-1;
-//    public int global_y_u=-1;
-//
-//    public int global_x_b=-1;
-//    public int global_y_b=-1;
-
-//    public void chkForArea(int x_u, int y_u, int x_b, int y_b){
-//        int localArea = (x_b-x_u)*(y_b-y_u);
-//
-//        if(this.globalArea<localArea){
-//            this.globalArea = localArea;
-//
-//            this.global_x_u = x_u;
-//            this.global_y_u = y_u;
-//
-//            this.global_x_b = x_b;
-//            this.global_y_b = y_b;
-//        }
-//    }
-
     public String getSolution(int m, int n, int h){
 
         // setup up a boolean matrix
@@ -91,7 +69,6 @@ public class Algorithm5 {
         // perform the memorization on final matrix
         for(int r=2; r<m; r++){
             for(int c=2; c<n; c++){
-                // Final[i][j] = 1+min(LB[i][j-1], LT[i-1][j-1], RT[i-1][j])
                 memorizationFinal[r][c] = 1+Math.min(Math.min(memorizationLeft[r][c-1],memorizationTopLeft[r-1][c-1]),memorizationTop[r-1][c]);
             }
         }
