@@ -137,12 +137,50 @@ c. memorization2D[r][c]:
 ****
 #### <i>Algorithm 4:</i>
 ```aidl
+Here the getSolution Java function that takes four parameters: m, n, h, and mat.
 
+m and n are integers representing the dimensions of the matrix mat.
+h is an integer representing the minimum height required for a cell to be included in a square.
+mat is a 2D array of integers representing the matrix.
+The function returns a string with four space-separated integers representing the coordinates of the bottom-right corner
+of the largest square that can be formed with cells having height greater than or equal to h.
+
+Here's what the function does:
+
+It sets the mat and columns instance variables of the class to the passed-in mat and a new m x n array of integers, 
+respectively.
+It calls the setColumnsMatrix method of the class to set the values of the columns array.
+It initializes a new m x n array of integers named sqr and calls the setSquareMatrix method to set its values.
+It initializes maxLen to 2 and bottomRighti and bottomRightj to 1.
+It loops through the cells of the matrix starting from the second row and second column (i.e., row index 2 and column 
+index 2).
+For each cell, it checks the height of cells in the same column to its left and to the bottom row to see if they are at 
+least h high. It determines the maximum square size that can be formed using these heights and sets the variable 
+sideLength to the smaller of that value and the value in the columns array at the previous row in the same column. 
+It also sets squareSize to the value in the sqr array at the previous row and column.
+It calculates the maximum possible side length of a square that can be formed using the current cell as the bottom-right
+corner. It does this by checking the heights of cells in the same row to the left and in the same column above the 
+square. If these cells are at least h high and the previous row and column contain a square of at least the same size, 
+it sets maxSide to squareSize + 2. Otherwise, it sets maxSide to squareSize + 1.
+
+If maxSide is greater than maxLen, it sets maxLen to maxSide and updates the values of bottomRighti and bottomRightj to 
+the current row and column, respectively.
+After the loop completes, it constructs a string with the coordinates of the bottom-right corner of the largest square 
+found and returns it.
 ```
 
 <u><i>Time Complexity:</i></u><br>
-
-
+The time complexity for this algorithm is O(mn). Here we are memorizing the best possible square by setting up the
+square matrix.<br>We are computing the 'sqr' matrix using following function:<br>
+```aidl
+this.sqr[r][c] = 1+Math.min(top,left,topLeft);
+```
+Where r,c is the current row & column index.<br>
+We take minimal of three direction:
+1. top
+2. left
+3. top-left<br>
+and add 1 to compute the best possible square at that index.<br>
 
 #### <i>Algorithm 5:(A & B)</i>
 ```aidl
