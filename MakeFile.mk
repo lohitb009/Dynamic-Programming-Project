@@ -1,9 +1,10 @@
 JC = javac
 JR = java
+
 sources = $(wildcard *.java)
 classes = $(sources:.java=.class)
 
-.PHONY: algo1 algo2 algo3 algo4 algo5 algo6 clean
+.PHONY: algo1 algo2 algo3 algo4 algo5a algo5b algo6 clean
 
 all: $(classes)
 
@@ -22,8 +23,11 @@ algo3: Algorithm3.class
 algo4: Algorithm4.class
 	$(JR) Algorithm4
 
-algo5: Algorithm5.class
-	$(JR) Algorithm5
+algo5a: Algorithm5a.class
+	$(JR) Algorithm5a
+
+algo5b: Algorithm5b.class
+	$(JR) Algorithm5b
 
 algo6: Algorithm6.class
 	$(JR) Algorithm1

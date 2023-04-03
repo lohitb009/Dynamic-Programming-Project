@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Algorithm5 {
+public class Algorithm5b {
     public int[][] plot;
 
     public String getSolution(int m, int n, int h){
@@ -120,7 +120,7 @@ public class Algorithm5 {
         Scanner sc = new Scanner(System.in);
 
         // create an object of class Algorithm1
-        Algorithm5 obj = new Algorithm5();
+        Algorithm5b obj = new Algorithm5b();
 
         // assumption right now
 //        String line1 = "6 6 10";
