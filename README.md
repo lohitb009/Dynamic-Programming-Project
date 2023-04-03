@@ -250,3 +250,17 @@ goal = (global_x_u,global_y_u) and (global_x_b,global_y_b) <br>
 <i>Bellman-Equation:</i>
 ```aidl
 ```
+
+### Miscellaneous
+****
+To run Makefile.mk in Remote CISE Machine (storm.cise.ufl.edu) use the following commands:
+1. make -f Makefile.mk
+
+Run the following commands for the strategies and enter the input as specified:
+1. make -f Makefile.mk algo1
+2. make -f Makefile.mk algo2
+3. make -f Makefile.mk algo3
+4. make -f Makefile.mk algo4
+5. make -f Makefile.mk algo5
+6. make -f Makefile.mk algo6
+7. make -f Makefile.mk algo7
