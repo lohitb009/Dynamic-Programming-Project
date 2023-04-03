@@ -306,6 +306,10 @@ Furthermore Algorithm 5b performed better<br>
 <img src="problem2Data.jpg"/><br>
 
 <b>For problem 3:</b> We were not able to perform analysis as we were not able to figure out Algorithm 7 approach<br>
+<b>Time Comparison Graph:</b><br>
+<img src="problem3Graph.jpg"/><br>
+<b>Input Set</b>:<br>
+<img src="problem3Data.jpg"/><br>
 ### Miscellaneous
 ****
 To run Makefile.mk in Remote CISE Machine (storm.cise.ufl.edu) use the following commands:
