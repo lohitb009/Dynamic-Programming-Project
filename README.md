@@ -49,10 +49,28 @@ of the bottom corner respectively conditionally.
 
 #### <i>Algorithm 2:</i>
 ```aidl
-
+The code implements two functions that are part of a program that analyzes a matrix of plotMat of size mxn representing 
+the heights of the ground.
+The first function, checkBoundary(), receives as input the matrix plotMat, the coordinates of a cell in the matrix 
+(i, j), the size of the matrix (m, n), and a threshold height value (h). It returns an array of three integers.
+This function checks if the cells in the matrix from the cell (i, j) to the bottom-right diagonal cells of the matrix 
+form a square with all its cells having a height value greater than or equal to the threshold value h. It does this 
+by incrementing a counter, count, that tracks the size of the square. The function starts at (i,j) and extends the 
+square diagonally as long as all the cells in the current row and column being considered have a height value greater 
+than or equal to the threshold value. Once a cell is found that does not meet this condition, the function updates the 
+right corner coordinates of the square and exits the loop. Finally, the function returns an array containing the 
+coordinates of the top-left corner of the square (i,j) and the size of the square (count).
+The second function, getMaxPossibleBoundary(), receives as input the matrix plotMat and the threshold value h. 
+It initializes variables to keep track of the maximum square size found (currentMax) and the coordinates of the top-left
+and bottom-right corners of the largest square found (currentLeftCorner and currentRightCorner). It then iterates 
+through all cells of the matrix and for each cell (i,j) that has a height value greater than or equal to the threshold 
+value h, it calls the checkBoundary() function passing the cell coordinates and other parameters as arguments. If the
+resulting square size is greater than the currentMax size, it updates the currentMax size and the corner coordinates
+variables. After all cells have been checked, the function returns an array containing the currentMax size and the 
+coordinates of the top-left and bottom-right corners of the largest square found.
 ```
-<u><i>Time Complexity:</i></u>
-
+<u><i>Time Complexity:</i></u><br>
+The time complexity for the algorithm is O(m<sup>2</sup> n<sup>2</sup>)
 
 #### <i>Algorithm 3:</i>
 ```aidl
@@ -126,39 +144,28 @@ c. memorization2D[r][c]:
 
 
 
-#### <i>Algorithm 5:(A & B)</i>
+#### <i>Algorithm 5:(A & B Combined)</i>
 ```aidl
-Define a method named "getSolution" that takes in three integer parameters "m", "n" and "h" and returns a string.
-Create a boolean matrix named "boolMatrix" of size "m x n" and a string matrix named "memorization2D" of size "m x n".
+This algorithm takes three integer inputs, m, n, and h, representing the dimensions of a plot of land (m x n) and a 
+minimum height h that needs to be maintained. It returns a string representing the coordinates of the largest possible 
+square plot of land within the given plot that meets the minimum height requirement.
 
-Use a nested for loop to iterate through each row and column of the "plot" array and fill the corresponding element of 
-"boolMatrix" with a value of "true" if the value of the plot is greater than or equal to "h", and "false" otherwise.
+The function first creates a boolean matrix called memorizationBoolean, where each element is 1 if the corresponding 
+element in the original plot matrix is greater than or equal to h, and 0 otherwise. It then creates three additional 
+matrices: memorizationLeft, memorizationTopLeft, and memorizationTop, each representing the maximum length of a square 
+that can be formed by extending to the left, top-left, or top of each element in the memorizationBoolean matrix, 
+respectively. Finally, it creates a matrix called memorizationFinal that represents the largest possible rectangular 
+plot of land with a minimum height of h that can be formed with each element in the memorizationBoolean matrix as its 
+bottom-right corner.
 
-Use another nested for loop to initialize the last row of the "memorization2D" array with "-1,-1" strings.
+The function calculates the values in the memorizationLeft, memorizationTopLeft, and memorizationTop matrices using 
+dynamic programming, and then calculates the values in the memorizationFinal matrix using the values in the other three 
+matrices. It then finds the largest value in the memorizationFinal matrix, which represents the size of the largest 
+possible rectangular plot of land with a minimum height of h, and returns the coordinates of this plot as a string.
 
-Use another nested for loop to initialize the last column of the "memorization2D" array with "-1,-1" strings.
-
-Use two nested for loops starting from the second last row and column of "memorization2D" and going backwards.
-
-Check if the element to the right, bottom and bottom-right of the current element in "boolMatrix" are all "true".
-
-If they are all "true", copy the value of the element in "memorization2D" at the bottom-right to the current element, 
-and check if the value is not "-1,-1".
-
-If the value is not "-1,-1", call the "chkForArea" method with the current row, column, and the row and column values 
-in the copied element.
-
-If the elements to the right and bottom of the current element are "true" but the element to the bottom-right is "false"
-, set the current element in "memorization2D" to the coordinates of the bottom-right element.
-
-If none of the above conditions are satisfied, set the current element in "memorization2D" to "-1,-1".
-
-Use two nested for loops to iterate through the "boolMatrix" and "memorization2D" arrays and print their values.
-
-Use a StringBuilder to append the values of "global_x_u", "global_y_u", "global_x_b" and "global_y_b" plus one to a 
-string in the required format.
-
-Return the string.
+The string is formatted as four integers separated by spaces: the x and y coordinates of the upper-left corner of the 
+plot and the x and y coordinates of the lower-right corner of the plot. Note that the coordinates are 1-indexed, so 
+the first row and column have index 1, not 0.
 ```
 
 <u><i>Time Complexity:</i></u>
@@ -168,21 +175,32 @@ Here we are performing bottom-up dynamic programming and using 2D memorization.
 
 <u><i> Analysis of Algorithm:</i></u><br>
 
-memorization2D(r,c) = bottom-right corner/coordinate value<br>
+Here we will memorize the three matrices mentioned below based upon the formula:<br>
+```aidl
+memorizationLeft[r][c] = 1+Math.min(Math.min(memorizationLeft[r-1][c-1],memorizationLeft[r-1][c]),
+                                                            Math.max(1,memorizationLeft[r][c-1]));
+                                                            
+memorizationTopLeft[r][c] = 1+Math.min(Math.min(memorizationTopLeft[r-1][c],memorizationTopLeft[r][c-1]),
+                                                            Math.max(1,memorizationTopLeft[r-1][c-1]));
+                                                            
+memorizationTop[r][c] = 1+Math.min(Math.min(memorizationTop[r-1][c-1],memorizationTop[r][c-1]),
+                                                            Math.max(1,memorizationTop[r-1][c]));
+```
+
+memorizationFinal(r,c) = memorized best square area at given [r][c] cell
 goal = (global_x_u,global_y_u) and (global_x_b,global_y_b) <br>
 
 <i>Bellman-Equation:</i>
 ```aidl
 memorization2D[r][c] will be 
 
-a. -1,-1:
-        if(r = m-1 && 0<=c<n) OR (c = n-1 && 0<=r<m)  OR
-        (boolean[r+1][c] OR boolean[r][c+1] == false)
-b. memorization2D[r][c]:
-         (boolean[r+1][c] AND boolean[r+1][c+1] AND boolean[r][c+1] == true)
-b. r+1,c+1:
-         (boolean[r+1][c] == true AND boolean[r+1][c+1]== false AND boolean[r][c+1] == true)
-
+a. 0,1 and 1,0:
+    memorizationFinal[r][c] = 1;
+b. 0,2 and 2,0:
+    memorizationFinal[r][c] = 2;
+c. r,c:
+      memorizationFinal[r][c] = 1+Math.min(Math.min(memorizationLeft[r][c-1],memorizationTopLeft[r-1][c-1]),
+                                                                                    memorizationTop[r-1][c]);
 ```
 
 ### Problem 3:
