@@ -276,22 +276,36 @@ The time complexity of algorithm is O(m<sup>3</sup> n<sup>3</sup>).<br>
 We are visiting every cell and at every cell we are checking the possibility of better square by going top and left <br>
 of the bottom corner respectively conditionally and taking care of allowed breeches (k).
 
-#### <i>Algorithm 7:</i>
+#### <i>Algorithm 7(A&B):</i>
 ```aidl
-
+Not able to figure out the approach for the problem
 ```
-<u><i>Time Complexity:</i></u>
-
+<u><i>Time Complexity:</i></u><br>
+Not able to figure out the approach for the problem
 
 <u><i> Analysis of Algorithm:</i></u><br>
-
-memorization2D(r,c) = bottom-right corner/coordinate value<br>
-goal = (global_x_u,global_y_u) and (global_x_b,global_y_b) <br>
-
+Not able to figure out the approach for the problem
 <i>Bellman-Equation:</i>
 ```aidl
+Not able to figure out the approach for the problem
 ```
 
+### Experimental Analysis
+****
+<b>For Problem 1:</b> Algorithm 3 performed better than algorithm 2 and 1 because of its linear time complexity<br>
+<b>Time Comparison Graph:</b><br>
+<img src="problem1Graph.jpg"/><br>
+<b>Input Set</b>:<br>
+<img src="problem1Data.jpg"/><br>
+
+<b>For problem 2:</b> Algorithm 5 performed better than Algorithm 4 because of its linear time complexity<br>
+Furthermore Algorithm 5b performed better<br>
+<b>Time Comparison Graph:</b><br>
+<img src="problem2Graph.jpg"/><br>
+<b>Input Set</b>:<br>
+<img src="problem2Data.jpg"/><br>
+
+<b>For problem 3:</b> We were not able to perform analysis as we were not able to figure out Algorithm 7 approach<br>
 ### Miscellaneous
 ****
 To run Makefile.mk in Remote CISE Machine (storm.cise.ufl.edu) use the following commands:
