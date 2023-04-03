@@ -2,41 +2,135 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Algorithm4 {
-    public static int[] largestSquareArea(int[][] p, int h) {
-        int m = p.length;
-        int n = p[0].length;
-        int[][] dp = new int[m][n];
-        int maxArea = 0;
-        int maxX = 0;
-        int maxY = 0;
 
-        // Compute dp[i][j] for each plot (i, j) in the grid
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (p[i][j] < h) {
-                    dp[i][j] = 0;
+    public int[][] mat;
+    public int[][] columns;
+    public int[][] sqr;
+
+    public void setColumnsMatrix(int m, int n, int h, int r, int c){
+
+        // base-case
+        if(r == m && c!=n){
+            return;
+        } else if (r!=m && c==n) {
+            this.setColumnsMatrix(m,n,h,r+1,0);
+            return;
+        }
+        // logic-case
+        if(this.mat[r][c]>=h){
+            if(r==0){
+                this.columns[r][c] = 1;
+            }else{
+                this.columns[r][c] = this.columns[r-1][c]+1;
+            }
+        }
+        this.setColumnsMatrix(m,n,h,r,c+1);
+        return;
+    }
+
+    public void setSquareMatrix(int m, int n, int h, int r, int c){
+        // base-case
+        if(r == m && c!=n){
+            return;
+        } else if (r!=m && c==n) {
+            this.setSquareMatrix(m,n,h,r+1,0);
+            return;
+        }
+        // logic-case
+        if(this.mat[r][c]>=h){
+            if(r==0 || c==0){
+                this.sqr[r][c] = 1;
+            }else{
+                int top = this.sqr[r-1][c];
+                int left = this.sqr[r][c-1];
+                int topLeft = this.sqr[r-1][c-1];
+                this.sqr[r][c] = 1+Math.min(top,Math.min(left,topLeft));
+            }
+        }
+        this.setSquareMatrix(m,n,h,r,c+1);
+        return;
+    }
+    public String getSolution(int m, int n, int h, int mat[][]) {
+
+        this.mat = mat;
+        this.columns = new int[m][n];
+
+        // set the columnsMatrix
+        this.setColumnsMatrix(m,n,h,0,0);
+
+        //set the square matrix
+        this.sqr = new int[m][n];
+        this.setSquareMatrix(m,n,h,0,0);
+
+        // minimum possible square area is 2
+        int maxLen = 2;
+        int bottomRighti = 1;
+        int bottomRightj = 1;
+
+
+        for (int i = 2; i < m; i++) {
+            for (int j = 2; j < n; j++) {
+
+                // chk for left
+                int lowerRow = 0;
+                int lowerCol = j - 1;
+                while (lowerCol >= 0 && this.mat[i][lowerCol] >= h) {
+                    lowerRow++;
+                    lowerCol--;
+                }
+
+                int sideLength = Math.min(this.columns[i - 1][j], lowerRow);
+                int squareSize = this.sqr[i - 1][j - 1];
+
+                int maxSide = 0;
+
+                // fill-up the maximal possible sq size
+                if (sideLength < squareSize) {
+                    maxSide = sideLength + 2;
                 } else {
-                    if (i == 0 || j == 0) {
-                        dp[i][j] = 1;
+
+                    int upperRow = 0;
+                    int upperCol = j - 1;
+
+                    int x_bound = i - 1 - squareSize;
+                    int y_bound = j - 1 - squareSize;
+
+                    while (x_bound >= 0 && upperCol >= 0 && this.mat[y_bound][upperCol] >= h) {
+                        upperRow+=1;
+                        upperCol-=1;
+                    }
+
+                    if (x_bound >= 0 && y_bound >= 0 && upperRow >= squareSize && this.columns[i - 1][y_bound] >= squareSize) {
+                        maxSide = squareSize + 2;
                     } else {
-                        dp[i][j] = 1 + Math.min(dp[i-1][j], Math.min(dp[i][j-1], dp[i-1][j-1]));
+                        maxSide = squareSize + 1;
                     }
                 }
 
-                // Update maxArea and (maxX, maxY) if dp[i][j] is larger
-                if (dp[i][j] > maxArea) {
-                    maxArea = dp[i][j];
-                    maxX = i;
-                    maxY = j;
+                if (maxSide > maxLen) {
+                    maxLen = maxSide;
+                    bottomRighti = i + 1;
+                    bottomRightj = j + 1;
                 }
+
             }
         }
 
-        // Compute the bounding indices of the largest square area
-        int minX = maxX - maxArea + 1;
-        int minY = maxY - maxArea + 1;
+        // return the coordinates
+        StringBuilder rtrString = new StringBuilder();
+        rtrString.append(Integer.toString(bottomRighti - maxLen + 1));
+        rtrString.append(" ");
 
-        return new int[]{minX, minY, maxX, maxY};
+        rtrString.append(Integer.toString(bottomRightj - maxLen + 1));
+        rtrString.append(" ");
+
+        rtrString.append(Integer.toString(bottomRighti));
+        rtrString.append(" ");
+
+        rtrString.append(Integer.toString(bottomRightj));
+        rtrString.append(" ");
+
+        return rtrString.toString();
     }
 
     public static void main(String[] args) {
@@ -79,16 +173,13 @@ public class Algorithm4 {
             }
         }
 
-//        int[][] p = {{2, 3, 1, 2}, {1, 2, 2, 1}, {4, 1, 3, 2}};
-//        int h = 2;
-
         // check the values
         System.out.println("\nm = " + m);
         System.out.println("n = " + n);
         System.out.println("h = " + h);
         System.out.println("plot = " + Arrays.deepToString(p));
 
-        int[] result = largestSquareArea(p, h);
-        System.out.println("\nBounding indices of largest square area: (" + result[0] + ", " + result[1] + "), (" + result[2] + ", " + result[3] + ")");
+        Algorithm4 obj = new Algorithm4();
+        System.out.println("final-result = " + obj.getSolution(m,n,h,p));
     }
 }
