@@ -144,9 +144,12 @@ c. memorization2D[r][c]:
 
 
 
-#### <i>Algorithm 5:(A & B Combined)</i>
+#### <i>Algorithm 5:(A & B)</i>
 ```aidl
-This algorithm takes three integer inputs, m, n, and h, representing the dimensions of a plot of land (m x n) and a 
+Algorithm 5a is the recursive representation and Algorithm 5b is the iterative representation of the code but 
+fundamentals of the logic remains unchanged.
+
+The algorithm takes three integer inputs, m, n, and h, representing the dimensions of a plot of land (m x n) and a 
 minimum height h that needs to be maintained. It returns a string representing the coordinates of the largest possible 
 square plot of land within the given plot that meets the minimum height requirement.
 
