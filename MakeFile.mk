@@ -28,8 +28,8 @@ algo5: Algorithm5.class
 algo6: Algorithm6.class
 	$(JR) Algorithm1
 
-#algo7: Algorithm7.class
-#	$(JR) Algorithm7
+algo7: Algorithm7.class
+	$(JR) Algorithm7
 
 clean:
 	rm -f *.class
